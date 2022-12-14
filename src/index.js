@@ -1,9 +1,10 @@
 const path = require('path');
 const express = require('express');
-const morgan = require('morgan');
+
 const methodOverride = require('method-override') 
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+const docenv = require('dotenv').config();
 const $ = require('jquery')
 
 const paginate = require('handlebars-paginate');
@@ -34,9 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 // methot [PUT] 
 app.use(methodOverride('_method'))
 
-app.use(morgan('combined'))
 
-
+const { restart } = require('nodemon');
 
 app.engine('hbs', handlebars.engine({
     extname: '.hbs',
